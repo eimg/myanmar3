@@ -7,3 +7,7 @@ License
 --------
 GNU Lesser General Public License
 [ http://www.gnu.org/licenses/lgpl.html ]
+
+Original Source
+--------
+Google Code : http://code.google.com/p/myanmar3source/
