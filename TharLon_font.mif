@@ -1,0 +1,1326 @@
+// Morph Input File for morxTestcase
+// Copyright: Copyleft 2011 Sun Tun
+// Version: 2011-09-22
+// http://code.google.com/p/myanmar3source/
+//
+// This is free software: you can redistribute it and/or
+// modify it under the terms of the GNU General Public License as
+// published by the Free Software Foundation, either version 3 of
+// the License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//================================================
+
+Type		LigatureList
+Name		Kinzi
+Namecode	1
+Setting		Kinzi Ligature
+Settingcode 	0
+Default 	yes
+Orientation 	H
+Forward 	yes
+Exclusive 	no
+
+List
+	kinzi.dot	nga asat.dot virama
+	kinzi.dot	mon.nga asat.dot virama
+	KINZI_RA	ra asat.dot virama
+//====================================================
+
+Type			Contextual
+Name			S_Kinzi
+Namecode		1
+Setting			Kinzi Step
+Settingcode		0
+Default			yes
+Orientation		H
+Forward			yes
+Exclusive		no
+
+Kinzi		kinzi.dot
+SomeCons	ka kha ga gha
++		bha ra la sa
+
+		EOT	OOB	DEL	EOL	Kinzi 	SomeCons
+StartText	1	1	1	1	2	1
+StartLine	1	1	1	1	2	1
+SeenCons	1	1	3	1	2	4
+
+	GoTo		Mark?		Advance?	SubstMark	SubstCurrent
+1	StartText	no		yes		none		none
+2	SeenCons	yes		yes		none		none
+3	SeenCons	no		yes		none		none
+4	StartText	no		yes		Replace		none
+
+Replace
+	kinzi.dot	kinzi
+
+//====================================================
+
+Type			Contextual
+Name			Visarga
+Namecode		1
+Setting			Visarga Step
+Settingcode		0
+Default			yes
+Orientation		H
+Forward			yes
+Exclusive		no
+
+PreBaseVow	e.vow.dot asat.dot aa.vow.alt.dot uu.let
++		aa.vow.dot u.vow.dot uu.vow.dot
++		ii.vow.dot anusvara.dot mon.ii.vow.dot
+Visarga		visarga.dot
+
+		EOT	OOB	DEL	EOL	PreBaseVow	Visarga
+StartText	1	1	1	1	2		1
+StartLine	1	1	1	1	2		1
+SeenVow		1	1	2	1	2		3
+
+	GoTo		Mark?		Advance?	SubstMark	SubstCurrent
+1	StartText	no		yes		none		none
+2	SeenVow		no		yes		none		none
+3	StartText	no		yes		none		Replace
+
+Replace
+	visarga.dot	visarga
+//===================================================
+Type			Contextual
+Name			Aukmyit
+Namecode		1
+Setting			Aukmyit Step
+Settingcode		0
+Default			yes
+Orientation		H
+Forward			yes
+Exclusive		no
+
+PreBaseVow	aa.vow.alt.dot aa.vow.dot u.vow.dot 
++		uu.vow.dot e.vow.dot ai.vow.dot anusvara.dot
+Aukmyit		aukmyit.dot
+
+		EOT	OOB	DEL	EOL	PreBaseVow	Aukmyit
+StartText	1	1	1	1	2		1
+StartLine	1	1	1	1	2		1
+SeenWa		1	1	2	1	2		3
+
+	GoTo		Mark?		Advance?	SubstMark	SubstCurrent
+1	StartText	no		yes		none		none
+2	SeenWa		no		yes		none		none
+3	StartText	no		yes		none		Replace
+
+Replace
+	aukmyit.dot	aukmyit
+	
+//===================================================
+Type			Contextual
+Name			Mon_ii
+Namecode		1
+Setting			Mon ii Step
+Settingcode		0
+Default			yes
+Orientation		H
+Forward			yes
+Exclusive		no
+
+Ilet	i.let
+MonII	mon.ii.vow.dot
+
+		EOT	OOB	DEL	EOL	Ilet	MonII
+StartText	1	1	1	1	2	1
+StartLine	1	1	1	1	2	1
+SeenIlet	1	1	2	1	2	3
+
+	GoTo		Mark?		Advance?	SubstMark	SubstCurrent
+1	StartText	no		yes		none		none
+2	SeenIlet	no		yes		none		none
+3	StartText	no		yes		none		Replace
+
+Replace
+	mon.ii.vow.dot	mon.ii.vow
+//=====================================================
+Type		Contextual
+Name		Aukmyit_Asat
+Namecode	8
+Setting		Aukmyit Asat
+Settingcode	2
+Default		yes
+Orientation	H
+Forward		yes
+Exclusive	no
+
+Aukmyit		aukmyit.dot aukmyit ha.med.dot
+Asat		asat.dot
+
+		EOT	OOB	DEL	EOL	Aukmyit	Asat
+StartText	1	1	1	1	2	1
+StartLine	1	1	1	1	2	1
+SeenAukmyit	1	1	3	1	2	4
+
+	GoTo		Mark?	Advance?	SubstMark	SubstCurrent
+1	StartText	no	yes		none		none
+2	SeenAukmyit	yes	yes		none		none
+3	SeenAukmyit	no	yes		none		none
+4	StartText	no	yes		Replace		Replace
+
+Replace
+	aukmyit.dot	aukmyit
+	asat.dot	asat
+
+//====================================================
+Type			Contextual
+Name			aiVowel
+Namecode		1
+Setting			AI Vowel
+Settingcode		0
+Default			yes
+Orientation		H
+Forward			yes
+Exclusive		no
+
+aaVowel		aa.vow.dot aa.vow.alt.dot u.vow.dot
+aiVowel		ai.vow.dot
+
+		EOT	OOB	DEL	EOL	aaVowel	aiVowel
+StartText	1	1	1	1	2	1
+StartLine	1	1	1	1	2	1
+SeenAA		1	1	2	1	2	3
+
+	GoTo		Mark?		Advance?	SubstMark	SubstCurrent
+1	StartText	no		yes		none		none
+2	SeenAA		no		yes		none		none
+3	StartText	no		yes		none		Replace
+
+Replace
+	ai.vow.dot	ai.vow
+
+//========================================
+
+Type			Contextual
+Name			Anusvara
+Namecode		1
+Setting			Anusvara Step
+Settingcode		0
+Default			yes
+Orientation		H
+Forward			yes
+Exclusive		no
+
+preVowel	u.vow.dot i.vow.dot aa.vow.alt.dot
++		aa.vow.dot shan.aa.vow.dot sgaw.eu.vow.dot
+Anusvara	anusvara.dot
+
+		EOT	OOB	DEL	EOL	preVowel	Anusvara
+StartText	1	1	1	1	2		1
+StartLine	1	1	1	1	2		1
+SeenPre		1	1	2	1	2		3
+
+	GoTo		Mark?		Advance?	SubstMark	SubstCurrent
+1	StartText	no		yes		none		none
+2	SeenPre		no		yes		none		none
+3	StartText	no		yes		none		Replace
+
+Replace
+	anusvara.dot	anusvara
+
+//====================================================
+Type			Contextual
+Name			u_Vowel
+Namecode		1
+Setting			Vowel U
+Settingcode		0
+Default			yes
+Orientation		H
+Forward			yes
+Exclusive		no
+
+iVowel	i.vow.dot
+uVowel	u.vow.dot
+
+		EOT	OOB	DEL	EOL	iVowel	uVowel
+StartText	1	1	1	1	2	1
+StartLine	1	1	1	1	2	1
+SeenI		1	1	2	1	2	3
+
+	GoTo		Mark?		Advance?	SubstMark	SubstCurrent
+1	StartText	no		yes		none		none
+2	SeenI		no		yes		none		none
+3	StartText	no		yes		none		Replace
+
+Replace
+	u.vow.dot	u.vow
+//==============================================
+Type			Contextual
+Name			aa_Vowel
+Namecode		1
+Setting			AA Group
+Settingcode		0
+Default			yes
+Orientation		H
+Forward			yes
+Exclusive		no
+
+eVowel		e.vow.dot ya.med.dot
+aaVowel		aa.vow.alt.dot aa.vow.dot ai.vow.dot 
++		shan.aa.vow.dot sgaw.eu.vow.dot
+
+		EOT	OOB	DEL	EOL	eVowel	aaVowel
+StartText	1	1	1	1	2	1
+StartLine	1	1	1	1	2	1
+SeenE		1	1	2	1	2	3
+
+	GoTo		Mark?		Advance?	SubstMark	SubstCurrent
+1	StartText	no		yes		none		none
+2	SeenE		no		yes		none		none
+3	StartText	no		yes		none		Replace
+
+Replace
+	aa.vow.alt.dot	aa.vow.alt
+	aa.vow.dot	aa.vow
+	ai.vow.dot	ai.vow
+	shan.aa.vow.dot shan.aa.vow
+	sgaw.eu.vow.dot	sgaw.eu.vow
+//====================================================
+
+
+Type			Contextual
+Name			Vowels
+Namecode		5
+Setting			All Vowels
+Settingcode		0
+Default			yes
+Orientation		H
+Forward			yes
+Exclusive		no
+
+BaseCons	ka kha ga gha nga ca
++		cha ja jha nya nnya tta ttha
++		dda ddha nna ta ga.sha pa.ssa
++		tha da dha na pa shan.fa
++		pha ba bha ma ya ra la wa sa
++		ha lla a.let great.sa o.let aa.vow
+Ignore		ya.med.dot ra.med.dot wa.med.dot ha.med.dot
+VowelE		asat.dot e.vow.dot aa.vow.alt.dot aa.vow.dot
++		i.vow.dot ii.vow.dot u.vow.dot uu.vow.dot
++		ai.vow.dot anusvara.dot mon.ii.vow.dot
++		mon.o.vow.dot eabove.vow.dot geba.i.vow.dot
++		kayah.oe.vow.dot kayah.u.vow.dot kayah.ee.vow.dot
++		shan.eabove.vow.dot shan.e.vow.dot shan.aa.vow.dot
++		sgaw.eu.vow.dot mon.ii.vow.dot visarga.dot
+
+		EOT	OOB	DEL	EOL	BaseCons	Ignore	VowelE
+StartText	1	1	1	1	2		1	1
+StartLine	1	1	1	1	2		1	1
+SeenCons	1	1	3	1	2		3	4
+
+	GoTo		Mark?	Advance?	SubstMark	SubstCurrent
+1	StartText	no	yes		none		none
+2	SeenCons	yes	yes		none		none
+3	SeenCons	no	yes		none		none
+4	StartText	no	yes		none		Replace
+
+
+Replace
+	asat.dot	asat
+	e.vow.dot	e.vow
+	aa.vow.alt.dot	aa.vow.alt
+	aa.vow.dot	aa.vow
+	i.vow.dot	i.vow
+	ii.vow.dot	ii.vow
+	u.vow.dot	u.vow
+	uu.vow.dot	uu.vow
+	ai.vow.dot	ai.vow
+	anusvara.dot	anusvara
+	mon.o.vow.dot	mon.o.vow
+	eabove.vow.dot	eabove.vow
+	geba.i.vow.dot	geba.i.vow
+	kayah.oe.vow.dot kayah.oe.vow
+	kayah.u.vow.dot	kayah.u.vow
+	kayah.ee.vow.dot kayah.ee.vow
+	shan.eabove.vow.dot shan.eabove.vow
+	shan.e.vow.dot	shan.e.vow
+	shan.aa.vow.dot	shan.aa.vow
+	sgaw.eu.vow.dot	sgaw.eu.vow
+	mon.ii.vow.dot	mon.ii.vow
+	visarga.dot	visarga
+
+//==============================================
+Type		Noncontextual
+Name		VowelU
+Namecode	64
+Setting		Change Long
+Settingcode 	1
+Default 	yes
+Orientation 	H
+Forward 	yes
+Exclusive 	yes
+
+u.vow	u.sig.lone
+uu.vow	uu.sig.lone
+//===================================================
+Type			Contextual
+Name			Anusvara
+Namecode		1
+Setting			Anusvara Step
+Settingcode		0
+Default			yes
+Orientation		H
+Forward			yes
+Exclusive		no
+
+fVowel		anusvara
+sVowel		anusvara.dot 
+
+		EOT	OOB	DEL	EOL	fVowel	sVowel
+StartText	1	1	1	1	2	1
+StartLine	1	1	1	1	2	1
+SeenF		1	1	2	1	2	3
+
+	GoTo		Mark?		Advance?	SubstMark	SubstCurrent
+1	StartText	no		yes		none		none
+2	SeenF		no		yes		none		none
+3	StartText	no		yes		none		Replace
+
+Replace
+	anusvara.dot	anusvara
+//===================================================
+Type			Contextual
+Name			ShanAA
+Namecode		1
+Setting			Shan AA
+Settingcode		0
+Default			yes
+Orientation		H
+Forward			yes
+Exclusive		no
+
+fVowel		shan.aa.vow visarga
+sVowel		shan.aa.vow.dot 
+
+		EOT	OOB	DEL	EOL	fVowel	sVowel
+StartText	1	1	1	1	2	1
+StartLine	1	1	1	1	2	1
+SeenF		1	1	2	1	2	3
+
+	GoTo		Mark?		Advance?	SubstMark	SubstCurrent
+1	StartText	no		yes		none		none
+2	SeenF		no		yes		none		none
+3	StartText	no		yes		none		Replace
+
+Replace
+	shan.aa.vow.dot	shan.aa.vow
+//====================================================
+Type			Contextual
+Name			Ha_Med
+Namecode		1
+Setting			Ha Medial
+Settingcode		0
+Default			yes
+Orientation		H
+Forward			yes
+Exclusive		no
+
+WaMed	wa.med.dot aa.vow
+HaMed	ha.med.dot
+
+		EOT	OOB	DEL	EOL	WaMed	HaMed
+StartText	1	1	1	1	2	1
+StartLine	1	1	1	1	2	1
+SeenWa		1	1	2	1	2	3
+
+	GoTo		Mark?		Advance?	SubstMark	SubstCurrent
+1	StartText	no		yes		none		none
+2	SeenWa		no		yes		none		none
+3	StartText	no		yes		none		Replace
+
+Replace
+	ha.med.dot	ha.med
+//====================================================
+Type			Contextual
+Name			Below_Med
+Namecode		1
+Setting			Below Medial
+Settingcode		0
+Default			yes
+Orientation		H
+Forward			yes
+Exclusive		no
+
+fMed	ya.med.dot ra.med.dot
+sMed	wa.med.dot ha.med.dot shan.wa.med.dot
+
+		EOT	OOB	DEL	EOL	fMed	sMed
+StartText	1	1	1	1	2	1
+StartLine	1	1	1	1	2	1
+SeenF		1	1	2	1	2	3
+
+	GoTo		Mark?	Advance?	SubstMark	SubstCurrent
+1	StartText	no	yes		none		none
+2	SeenF		no	yes		none		none
+3	StartText	no	yes		none		Replace
+
+Replace
+	wa.med.dot	wa.med
+	ha.med.dot	ha.med
+	shan.wa.med.dot	shan.wa.med
+//====================================================
+Type			Contextual
+Name			Medials
+Namecode		1
+Setting			All Medial
+Settingcode		0
+Default			yes
+Orientation		H
+Forward			yes
+Exclusive		no
+
+BaseCons	ka kha ga gha nga ca
++		cha ja jha nya nnya tta ttha
++		dda ddha nna ta
++		tha da dha na pa shan.fa
++		pha ba bha ma ga.sha pa.ssa
++		ya ra la wa sa ha lla a.let
+Medials		ya.med.dot ra.med.dot wa.med.dot ha.med.dot
++		shan.wa.med.dot mon.na.med.dot
++		mon.ma.med.dot mon.la.med.dot
+
+		EOT	OOB	DEL	EOL	BaseCons	Medials
+StartText	1	1	1	1	2		1
+StartLine	1	1	1	1	2		1
+SeenCons	1	1	2	1	2		3
+
+	GoTo		Mark?	Advance?	SubstMark	SubstCurrent
+1	StartText	no	yes		none		none
+2	SeenCons	no	yes		none		none
+3	StartText	no	yes		none		Replace
+
+Replace
+	ya.med.dot	ya.med
+	ra.med.dot	ra.med
+	wa.med.dot	wa.med
+	ha.med.dot	ha.med
+	shan.wa.med.dot	shan.wa.med
+	mon.na.med.dot	mon.na.med
+	mon.ma.med.dot	mon.ma.med
+	mon.la.med.dot	mon.la.med
+
+//====================================================
+
+Type		LigatureList
+Name		Stacked
+Namecode	1
+Setting		Stacked Ligature
+Settingcode 	1
+Default 	yes
+Orientation 	H
+Forward 	yes
+Exclusive 	no
+
+List
+	ka.sub.dot	virama	ka
+	kha.sub.dot	virama	kha
+	ga.sub.dot	virama	ga
+	gha.sub.dot	virama	gha
+	ca.sub.dot	virama	ca
+	cha.sub.dot	virama	cha
+	ja.sub.dot	virama	ja
+	jha.sub.dot	virama	jha
+	tta.sub.dot	virama	tta
+	ttha.sub.dot	virama	ttha
+	dda.sub.dot	virama	dda
+	ddha.sub.dot	virama	ddha
+	nna.sub.dot	virama	nna
+	ta.sub.dot	virama	ta
+	tha.sub.dot	virama	tha
+	da.sub.dot	virama	da
+	dha.sub.dot	virama	dha
+	na.sub.dot	virama	na
+	pa.sub.dot	virama	pa
+	pha.sub.dot	virama	pha
+	ba.sub.dot	virama	ba
+	bha.sub.dot	virama	bha
+	ma.sub.dot	virama	ma
+	la.sub.dot	virama	la
+	sa.sub.dot	virama	sa
+	a.let.sub.dot	virama	a.let
+//====================================================
+
+
+Type			Contextual
+Name			SubCons
+Namecode		1
+Setting			Sub Consonant
+Settingcode		0
+Default			yes
+Orientation		H
+Forward			yes
+Exclusive		no
+
+BaseCons	ka kha ga gha ca
++		cha ja jha nya tta ttha
++		dda ddha nna ta
++		tha da dha na pa
++		pha ba bha ma
++		la sa ha a.let
+SubCons		ka.sub.dot kha.sub.dot ga.sub.dot gha.sub.dot ca.sub.dot cha.sub.dot
++		ja.sub.dot jha.sub.dot tta.sub.dot ttha.sub.dot dda.sub.dot
++		ddha.sub.dot nna.sub.dot ta.sub.dot tha.sub.dot da.sub.dot	
++		dha.sub.dot na.sub.dot pa.sub.dot pha.sub.dot ba.sub.dot
++		bha.sub.dot ma.sub.dot la.sub.dot sa.sub.dot a.let.sub.dot
+
+		EOT	OOB	DEL	EOL	BaseCons	SubCons
+StartText	1	1	1	1	2		1
+StartLine	1	1	1	1	2		1
+SeenCons	1	1	2	1	2		3
+
+	GoTo		Mark?		Advance?	SubstMark	SubstCurrent
+1	StartText	no		yes		none		none
+2	SeenCons	no		yes		none		none
+3	StartText	no		yes		none		Replace
+
+Replace
+	ka.sub.dot	ka.sub
+	kha.sub.dot	kha.sub
+	ga.sub.dot 	ga.sub
+	gha.sub.dot	gha.sub
+	ca.sub.dot	ca.sub
+	cha.sub.dot	cha.sub
+	ja.sub.dot	ja.sub
+	jha.sub.dot	jha.sub
+	tta.sub.dot	tta.sub
+	ttha.sub.dot	ttha.sub
+	dda.sub.dot	dda.sub
+	ddha.sub.dot	ddha.sub
+	nna.sub.dot	nna.sub
+	ta.sub.dot	ta.sub
+	tha.sub.dot	tha.sub
+	da.sub.dot	da.sub
+	dha.sub.dot	dha.sub
+	na.sub.dot	na.sub
+	pa.sub.dot	pa.sub
+	pha.sub.dot	pha.sub
+	ba.sub.dot	ba.sub
+	bha.sub.dot	bha.sub
+	ma.sub.dot	ma.sub
+	la.sub.dot	la.sub
+	sa.sub.dot	sa.sub
+	a.let.sub.dot	a.let.sub
+
+//===================================================
+
+Type			Contextual
+Name			HaAlt
+Namecode		1
+Setting			Small Ha
+Settingcode		0
+Default			yes
+Orientation		H
+Forward			yes
+Exclusive		no
+
+NnyaRaMed	nya nnya ra.med
+HaMed		ha.med
+
+		EOT	OOB	DEL	EOL	NnyaRaMed	HaMed
+StartText	1	1	1	1	2		1
+StartLine	1	1	1	1	2		1
+SeenNnya	1	1	2	1	2		3
+
+	GoTo		Mark?	Advance?	SubstMark	SubstCurrent
+1	StartText	no	yes		none		none
+2	SeenNnya	no	yes		none		none
+3	StartText	no	yes		none		Replace
+
+Replace
+	ha.med	ha.med.alt
+//===================================================
+
+Type			Contextual
+Name			uVowels
+Namecode		5
+Setting			Short U
+Settingcode		0
+Default			yes
+Orientation		H
+Forward			yes
+Exclusive		no
+
+ShortCons	ka kha ga gha nga
++	ca cha ja ga.sha pa.ssa
++	ta tha da dha na
++	pa pha ba bha ma shan.fa
++	ya ra la wa sa
++	ha a.let great.sa
+Ignore	i.vow
+VowelU	u.sig.lone uu.sig.lone
+
+		EOT	OOB	DEL	EOL	ShortCons	Ignore	VowelU
+StartText	1	1	1	1	2		1	1
+StartLine	1	1	1	1	2		1	1
+SeenCons	1	1	3	1	2		3	4
+
+	GoTo		Mark?	Advance?	SubstMark	SubstCurrent
+1	StartText	no	yes		none		none
+2	SeenCons	yes	yes		none		none
+3	SeenCons	no	yes		none		none
+4	StartText	no	yes		none		Replace
+
+
+Replace
+	u.sig.lone	u.vow
+	uu.sig.lone	uu.vow
+
+//====================================================
+Type		Contextual
+Name		Nya
+Namecode	8
+Setting		Short Nya
+Settingcode	1
+Default		yes
+Orientation	H
+Forward		yes
+Exclusive	no
+
+Nya	nya
+Asat	asat aukmyit
+
+		EOT	OOB	DEL	EOL	Nya	Asat
+StartText	1	1	1	1	2	1
+StartLine	1	1	1	1	2	1
+SeenNya		1	1	3	1	2	4
+
+	GoTo		Mark?	Advance?	SubstMark	SubstCurrent
+1	StartText	no	yes		none		none
+2	SeenNya		yes	yes		none		none
+3	SeenNya		no	yes		none		none
+4	StartText	no	yes		Replace		none
+
+Replace
+	nya		nya.short
+
+//====================================================
+
+Type		Contextual
+Name		Short Nya
+Namecode	8
+Setting		Alta Nya
+Settingcode	2
+Default		yes
+Orientation	H
+Forward		yes
+Exclusive	no
+
+Nya	nya
+SubCon	ca.sub cha.sub ja.sub
+
+		EOT	OOB	DEL	EOL	Nya	SubCon
+StartText	1	1	1	1	2	1
+StartLine	1	1	1	1	2	1
+SeenNya		1	1	3	1	2	4
+
+	GoTo		Mark?	Advance?	SubstMark	SubstCurrent
+1	StartText	no	yes		none		none
+2	SeenNya		yes	yes		none		none
+3	SeenNya		no	yes		none		none
+4	StartText	no	yes		Replace		none
+
+Replace
+	nya		nya.alt
+
+//====================================================
+
+Type			Contextual
+Name			Na
+Namecode		5
+Setting			Short Na
+Settingcode		1
+Default			yes
+Orientation		H
+Forward			yes
+Exclusive		no
+
+Na	na shan.fa
+Ignore	i.vow asat
+BelowB	ya.med ra.med wa.med ha.med
++	u.vow uu.vow wa.ha.med bha.sub ma.sub
++	ta.sub tha.sub da.sub dha.sub na.sub
++	pa.sub pha.sub ba.sub 
+
+		EOT	OOB	DEL	EOL	Na	Ignore	BelowB
+StartText	1	1	1	1	2	1	1
+StartLine	1	1	1	1	2	1	1
+SeenNa		1	1	3	1	2	3	4
+
+	GoTo		Mark?	Advance?	SubstMark	SubstCurrent
+1	StartText	no	yes		none		none
+2	SeenNa		yes	yes		none		none
+3	SeenNa		no	yes		none		none
+4	StartText	no	yes		Replace		none
+
+
+Replace
+	na	na.alt
+	shan.fa	A_FA
+//====================================================
+Type			Contextual
+Name			HaU
+Namecode		5
+Setting			HaU Liga
+Settingcode		0
+Default			yes
+Orientation		H
+Forward			yes
+Exclusive		no
+
+MaLaNa		ma la na.alt ra
+Med.ha		ha.med
+Ignore		i.vow
+LongU		u.sig.lone
+
+		EOT	OOB	DEL	EOL	MaLaNa	Med.ha	Ignore	LongU
+StartText	1	1	1	1	2	1	1	1
+StartLine	1	1	1	1	2	1	1	1
+SeenMaLaNa	1	1	1	1	2	3	2	4
+SeenMedha	1	1	4	1	2	4	4	5
+
+	GoTo		Mark?	Advance?	SubstMark	SubstCurrent
+1	StartText	no	yes		none		none
+2	SeenMaLaNa	no	yes		none		none
+3	SeenMedha	yes	yes		none		none
+4	SeenMedha	no	yes		none		none
+5	StartText	no	yes		Replace		Replace
+
+Replace
+	ha.med		ha.med.u.sig
+	u.sig.lone	uni200B
+
+//====================================================
+Type			Contextual
+Name			ra
+Namecode		5
+Setting			ra alt
+Settingcode		1
+Default			yes
+Orientation		H
+Forward			yes
+Exclusive		no
+
+Ra	ra
+Ignore	i.vow ha.med
+BelowB	ya.med ra.med
++	u.vow uu.vow
++	ta.sub tha.sub
++	ha.med.u.sig
+
+		EOT	OOB	DEL	EOL	Ra	Ignore	BelowB
+StartText	1	1	1	1	2	1	1
+StartLine	1	1	1	1	2	1	1
+SeenRa		1	1	3	1	2	3	4
+
+	GoTo		Mark?	Advance?	SubstMark	SubstCurrent
+1	StartText	no	yes		none		none
+2	SeenConRa	yes	yes		none		none
+3	SeenConRa	no	yes		none		none
+4	StartText	no	yes		Replace		none
+
+
+Replace
+	ra	ra.alt
+
+//====================================================
+
+Type			Contextual
+Name			nnya
+Namecode		5
+Setting			nnya alt
+Settingcode		1
+Default			yes
+Orientation		H
+Forward			yes
+Exclusive		no
+
+Nnya	nnya
+Ignore	i.vow
+BelowB	wa.med wa.ha.med
+
+		EOT	OOB	DEL	EOL	Nnya	Ignore	BelowB
+StartText	1	1	1	1	2	1	1
+StartLine	1	1	1	1	2	1	1
+SeenNnya	1	1	3	1	2	3	4
+
+	GoTo		Mark?	Advance?	SubstMark	SubstCurrent
+1	StartText	no	yes		none		none
+2	SeenNnya	yes	yes		none		none
+3	SeenNnya	no	yes		none		none
+4	StartText	no	yes		Replace		none
+
+
+Replace
+	nnya	nnya.alt
+//=================================================
+Type          LigatureList
+Name          aw
+Namecode      1
+Setting       aw liga
+Settingcode   0
+Default       yes
+Orientation   H
+Forward       yes
+Exclusive     no
+
+Ignore
+	aukmyit
+List
+	aa.alt.asat	aa.vow.alt	asat.dot
+
+//====================================================
+
+
+Type			Contextual
+Name			sHand
+Namecode		5
+Setting			Short Hand
+Settingcode		0
+Default			yes
+Orientation		H
+Forward			yes
+Exclusive		no
+
+Cons	ka na
+Ignore	asat
+VowelMed	u.vow.dot ya.med.dot	
+
+		EOT	OOB	DEL	EOL	Cons	Ignore	VowelMed
+StartText	1	1	1	1	2	1	1
+StartLine	1	1	1	1	2	1	1
+SeenCons	1	1	3	1	2	3	4
+
+	GoTo		Mark?	Advance?	SubstMark	SubstCurrent
+1	StartText	no	yes		none		none
+2	SeenCons	yes	yes		none		none
+3	SeenCons	no	yes		none		none
+4	StartText	no	yes		none		Replace
+
+
+Replace
+	u.vow.dot	u.vow
+	ya.med.dot	ya.med
+
+//====================================================
+
+
+
+Type			Rearrangement
+Name			Kinzi
+Namecode		5
+Setting			Swap Kinzi
+Settingcode		0
+Default			yes
+Orientation		HV
+Forward			yes
+Exclusive		no
+
+Kinzi	kinzi
+Cons	ka kha ga gha
++	bha ra la sa
+Medya	ya.med
+
+		EOT	OOB	DEL	EOL	Kinzi	Cons	Medya
+StartText	1	1	1	1	2	1	1
+StartLine	1	1	1	1	2	1	1
+SeenKinzi	1	1	3	1	2	4	4
+SeenCons	6	6	5	6	2	6	6
+
+	GoTo		MarkFirst?	MarkLast?	Advance?	DoThis
+1	StartText	no		no		yes		none
+2	SeenKinzi	yes		no		yes		none
+3	SeenKinzi	no		no		yes		none
+4	SeenCons	no		yes		yes		none
+5	SeenCons	no		no		yes		none
+6	StartText	no		no		yes		Ax->xA
+
+//====================================================
+
+Type		Rearrangement
+Name		EVow
+Namecode	5
+Setting		Swap EVow
+Settingcode 	1
+Default		yes
+Orientation	 H
+Forward 	yes
+Exclusive 	no
+
+cons	ka kha ga gha nga
++	ca cha ja jha nya nnya
++	tta ttha dda ddha nna
++	ta tha da dha na ga.sha
++	pa pha ba bha ma pa.ssa
++	ya ra la wa sa o.let
++	ha lla a.let na.alt nya.alt
+kinzi	kinzi
+sub	ka.sub kha.sub ga.sub gha.sub
++	ca.sub cha.sub ja.sub jha.sub
++	tta.sub ttha.sub dda.sub ddha.sub nna.sub
++	ta.sub tha.sub da.sub dha.sub na.sub
++	pa.sub pha.sub ba.sub bha.sub ma.sub
++	la.sub sa.sub a.let.sub
+med	ya.med ra.med wa.med ha.med ha.med.alt
+e.vow 	e.vow shan.e.vow
+
+		EOT	OOB	DEL	EOL	cons	kinzi	sub	med	e.vow
+StartText	1	1	1	1	2	1	1	1	1
+StartLine	1	1	1	1	2	1	1	1	1
+SeenCons	1	1	1	1	2	3	4	5	6
+SeenKinzi	1	1	3	1	2	1	4	5	6
+SeenSub		1	1	4	1	2	1	1	5	6
+SeenMed		1	1	1	1	2	1	1	5	6
+SeenEVow	8	8	7	8	8	8	8	8	8
+
+	GoTo		MarkFirst?	MarkLast?	Advance?	DoThis
+1	StartText	no		no		yes		none
+2	SeenCons	yes		no		yes		none
+3	SeenKinzi	no		no		yes		none
+4	SeenSub		no		no		yes		none
+5	SeenMed		no		no		yes		none
+6	SeenEVow	no		yes		yes		none
+7	SeenEVow	no		no		yes		none
+8	StartText	no		no		no		xD->Dx
+
+//====================================================
+
+Type		Rearrangement
+Name		RaMed
+Namecode	5
+Setting		Swap RaMed
+Settingcode 	2
+Default		yes
+Orientation	 H
+Forward 	yes
+Exclusive 	no
+
+cons	ka kha ga nga
++	ca cha ja ga.sha
++	ta da dha na pa.ssa
++	pa pha ba ma
++	ra sa na.alt
+kinzi	kinzi
+sub	ka.sub kha.sub ga.sub gha.sub
++	ca.sub cha.sub ja.sub jha.sub
++	tta.sub ttha.sub dda.sub ddha.sub nna.sub
++	ta.sub tha.sub da.sub dha.sub na.sub
++	pa.sub pha.sub ba.sub bha.sub ma.sub
++	la.sub sa.sub a.let.sub
+ra.med	ra.med
+
+		EOT	OOB	DEL	EOL	cons	kinzi	sub	ra.med
+StartText	1	1	1	1	2	1	1	1
+StartLine	1	1	1	1	2	1	1	1
+SeenCons	1	1	1	1	2	3	4	5
+SeenKinzi	1	1	3	1	2	1	4	5
+SeenSub		1	1	4	1	2	1	1	5
+SeenRaMed	7	7	6	7	7	7	7	7
+
+	GoTo		MarkFirst?	MarkLast?	Advance?	DoThis
+1	StartText	no		no		yes		none
+2	SeenCons	yes		no		yes		none
+3	SeenKinzi	no		no		yes		none
+4	SeenSub		no		no		yes		none
+5	SeenRaMed	no		yes		yes		none
+6	SeenRaMed	no		no		yes		none
+7	StartText	no		no		no		xD->Dx
+
+
+//====================================================
+
+
+Type		Contextual
+Name		Smart Swashes
+Namecode	8
+Setting		Special "ra"
+Settingcode 	2
+Default 	yes
+Orientation 	H
+Forward 	yes
+Exclusive 	no
+
+ra.med	ra.med
+wide.cons ka cha ta tha la sa ha
+
+		EOT	OOB	DEL	EOL	ra.med	wide.cons
+StartText	1	1	1	1	2	1
+StartLine	1	1	1	1	2	1
+SeenRaMed	1	1	3	1	2	5
+SeenCons	5	5	4	5	3	3
+
+	GoTo		Mark?		Advance?	SubstMark	SubstCurrent
+1	StartText	no		yes		none		none
+2	SeenRaMed	yes		yes		none		none
+3	SeenRaMed	no		yes		none		none
+4	SeenCons	no		yes		none		none
+5	StartText	no		yes		bigMedRa	none
+
+bigMedRa
+		ra.med	ra.med.wide
+
+//====================================================
+
+Type          LigatureList
+Name          mLig
+Namecode      1
+Setting       Medial Liga
+Settingcode   0
+Default       yes
+Orientation   H
+Forward       yes
+Exclusive     no
+
+List
+	ha.med.u.sig	ha.med	u.vow
+	ya.wa.med	ya.med	wa.med
+	ya.wa.med	ya.med	shan.wa.med
+	ya.ha.med	ya.med	ha.med
+	wa.ha.med	wa.med	ha.med
+	i.vow.anusvara	i.vow	anusvara
+	nna.dda.lig	nna	dda.sub
+	dda.ddha.lig	dda	ddha.sub
+	tta.ttha.lig	tta	ttha.sub
+	tta.tta.lig	tta	tta.sub
+	//nna.nna.lig	nna	nna.sub
+	ta.sub.wa.med	ta.sub	wa.med
+	A_HA1	shan.ha	uu.vow.dot
+	A_HA2	shan.ha	wa.med.dot
+	A_HA3	shan.ha shan.wa.med.dot
+	
+//====================================
+
+Type			Contextual
+Name			raMed
+Namecode		5
+Setting			raMed Alt
+Settingcode		3
+Default			yes
+Orientation		H
+Forward			yes
+Exclusive		no
+
+MedRas	ra.med ra.med.wide
+Cons	ka kha ga nga
++	ca cha ja ga.sha
++	ta tha da dha na
++	pa pha ba ma
++	ra la sa pa.ssa
++	ha na.alt
+LowMed	wa.med wa.ha.med
+
+
+		EOT	OOB	DEL	EOL	MedRas	Cons	LowMed
+StartText	1	1	1	1	2	1	1
+StartLine	1	1	1	1	2	1	1
+SeenMedRas	1	1	3	1	2	4	1
+SeenCons	1	1	4	1	2	1	5
+
+	GoTo		Mark?	Advance?	SubstMark	SubstCurrent
+1	StartText	no	yes		none		none
+2	SeenMedRas	yes	yes		none		none
+3	SeenMedRas	no	yes		none		none
+4	SeenCons	no	yes		none		none
+5	StartText	no	yes		Replace		none
+
+Replace
+	ra.med		ra.med.lowershort
+	ra.med.wide	ra.med.lowershort1.wide
+
+//========================
+
+Type			Contextual
+Name			raMed_up
+Namecode		5
+Setting			raMed upper
+Settingcode		3
+Default			yes
+Orientation		H
+Forward			yes
+Exclusive		no
+
+MedRas	ra.med ra.med.wide
+Cons	ka kha ga nga
++	ca cha ja ga.sha
++	ta tha da dha na
++	pa pha ba ma
++	ra la sa pa.ssa
++	ha na.alt
+Ignore	ha.med.alt
+VowelUp		i.vow ii.vow ai.vow kinzi mon.ii.vow
+
+		EOT	OOB	DEL	EOL	MedRas	Cons	Ignore	VowelUp
+StartText	1	1	1	1	2	1	1	1
+StartLine	1	1	1	1	2	1	1	1
+SeenMedRas	1	1	3	1	2	4	2	1
+SeenCons	1	1	4	1	2	1	4	5
+
+	GoTo		Mark?	Advance?	SubstMark	SubstCurrent
+1	StartText	no	yes		none		none
+2	SeenMedRas	yes	yes		none		none
+3	SeenMedRas	no	yes		none		none
+4	SeenCons	no	yes		none		none
+5	StartText	no	yes		Replace		none
+
+Replace
+	ra.med		ra.med.uppershort
+	ra.med.wide	ra.med.uppershort.wide
+//==================================
+
+
+Type			Contextual
+Name			KinziUp
+Namecode		1
+Setting			Kinzi Liga
+Settingcode		0
+Default			yes
+Orientation		H
+Forward			yes
+Exclusive		no
+
+Kinzi	kinzi
+Medya		ya.med
+AbvVowel	i.vow ii.vow anusvara mon.ii.vow
+
+		EOT	OOB	DEL	EOL	Kinzi	Medya	AbvVowel
+StartText	1	1	1	1	2	1	1
+StartLine	1	1	1	1	2	1	1
+SeenKinzi	1	1	2	1	2	3	4
+
+	GoTo		Mark?	Advance?	SubstMark	SubstCurrent
+1	StartText	no	yes		none		none
+2	SeenKinzi	no	yes		none		none
+3	SeenKinzi	no	yes		none		none
+4	StartText	no	yes		none		Replace
+
+Replace	
+	i.vow		kinzi.i.vow
+	ii.vow		kinzi.ii.vow
+	anusvara	kinzi.anusvara
+	mon.ii.vow	kinzi.mon.ii.vow
+//====================================
+Type			Rearrangement
+Name			KinziPos
+Namecode		5
+Setting			Kinzi Posation
+Settingcode		0
+Default			yes
+Orientation		HV
+Forward			yes
+Exclusive		no
+
+Kinzi	kinzi
+Medya		ya.med
+KinziLig	kinzi.i.vow kinzi.ii.vow kinzi.anusvara mon.ii.vow
+
+		EOT	OOB	DEL	EOL		Kinzi	Medya	KinziLig
+StartText	1	1	1	1		2	1	1	
+StartLine	1	1	1	1		2	1	1	
+SeenKinzi	1	1	3	1		2	3	4	
+SeenKinziLig	6	6	5	6		2	6	6	
+
+	GoTo		MarkFirst?	MarkLast?	Advance?	DoThis
+1	StartText	no		no		yes		none
+2	SeenKinzi	yes		no		yes		none
+3	SeenKinzi	no		no		yes		none
+4	SeenKinziLig	no		yes		yes		none
+5	SeenKinziLig	no		no		yes		none
+6	StartText	no		no		yes		xD->Dx
+//==========================
+Type			Contextual
+Name			rKinzi
+Namecode		1
+Setting			Remove Kinzi
+Settingcode		0
+Default			yes
+Orientation		H
+Forward			yes
+Exclusive		no
+
+KinziLig	kinzi.i.vow kinzi.ii.vow kinzi.anusvara kinzi.mon.ii.vow
+Kinzi		kinzi
+
+		EOT	OOB	DEL	EOL	KinziLig	Kinzi
+StartText	1	1	1	1	2		1
+StartLine	1	1	1	1	2		1
+SeenKinziLig	1	1	2	1	2		3
+
+	GoTo		Mark?	Advance?	SubstMark	SubstCurrent
+1	StartText	no	yes		none		none
+2	SeenKinziLig	no	yes		none		none
+3	StartText	no	yes		none		Replace
+
+Replace	
+	kinzi		uni200B
+
+//==========================
+
+Type			Contextual
+Name			AukmyitTwo
+Namecode		27
+Setting			Form Two
+Settingcode		1
+Default			yes
+Orientation		H
+Forward			yes
+Exclusive		no
+
+NarrBase	u.sig.lone uu.sig.lone ra.alt
++		ya.med wa.med wa.ha.med ra
++		ka.sub ta.sub ha.med.u.sig
+Ignore		anusvara ai.vow i.vow ii.vow uni200B u.vow ha.med e.vow
+Aukmyit		aukmyit
+
+		EOT	OOB	DEL	EOL	NarrBase	Ignore	Aukmyit
+StartText	1	1	1	1	2		1	1
+StartLine	1	1	1	1	2		1	1
+SeenNbase	1	1	2	1	2		2	3
+
+	GoTo		Mark?	Advance?	SubstMark	SubstCurrent
+1	StartText	no	yes		none		none
+2	SeenNbase	no	yes		none		none
+3	StartText	no	yes		none		Replace
+
+Replace
+	aukmyit	aukmyit.alt2
+
+//==========================
+
+Type			Contextual
+Name			AukmyitOne
+Namecode		27
+Setting			Form One
+Settingcode		0
+Default			yes
+Orientation		H
+Forward			yes
+Exclusive		no
+
+NarrBase	u.vow uu.vow ha.med na
+Ignore		anusvara ai.vow i.vow ii.vow asat
+Aukmyit	aukmyit
+
+		EOT	OOB	DEL	EOL	NarrBase	Ignore	Aukmyit
+StartText	1	1	1	1	2		1	1
+StartLine	1	1	1	1	2		1	1
+SeenNbase	1	1	2	1	2		2	3
+
+	GoTo		Mark?	Advance?	SubstMark	SubstCurrent
+1	StartText	no	yes		none		none
+2	SeenNbase	no	yes		none		none
+3	StartText	no	yes		none		Replace
+
+Replace
+	aukmyit	aukmyit.alt1
+
+//==========================
