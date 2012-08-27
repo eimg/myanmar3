@@ -1,4 +1,4 @@
-myanmar3
+Myanmar3 Unicode System - Fork
 ========
 
-Unicode fonts and language system for Myanmar language.
+Unicode fonts, Input Methods and language system for Myanmar language.
